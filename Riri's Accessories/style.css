@@ -850,4 +850,4 @@
     .form-row { grid-template-columns: 1fr; }
     footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     .stats-bar { gap: 2rem; padding: 1.5rem; }
-  };
+  }
