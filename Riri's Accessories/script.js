@@ -189,9 +189,24 @@ function renderFormTab() {
         </div>
       </div>
       <div class="admin-fg">
-        <label>Image URL (optional)</label>
-        <input type="url" id="af-img" placeholder="https://i.imgur.com/..." value="${p.image||""}">
-        <span class="hint">Upload to imgur.com, right-click the image → Copy image address, paste here</span>
+        <label>Product Photo (optional)</label>
+        <div class="img-upload-wrap">
+          <div class="img-preview-box ${p.image?'has-image':''}" id="img-preview-box" onclick="triggerImgUpload()" style="--upload-border:var(--sand,#e8d5b7);--upload-bg:var(--blush,#f9e8e8);--upload-accent:var(--rosegold,#c9917a);">
+            ${p.image ? `<img id="img-preview" src="${p.image}" alt="preview">` : `<img id="img-preview" src="" alt="preview" style="display:none;">`}
+            <div class="upload-label">
+              <span class="upload-icon">📷</span>
+              <span class="upload-text">Tap to upload photo</span>
+              <span class="upload-sub">JPG, PNG — from phone or computer</span>
+            </div>
+            <button class="remove-img" onclick="removeImg(event)">✕</button>
+          </div>
+          <input type="file" id="img-file-input" class="img-upload-input" accept="image/*" onchange="handleImgUpload(event)">
+          <span class="img-url-toggle" onclick="toggleUrlInput()">Or paste an image URL instead</span>
+          <div class="img-url-row" id="img-url-row">
+            <input type="url" id="af-img" placeholder="https://i.imgur.com/..." value="${p.image&&p.image.startsWith('http')?p.image:''}">
+            <span class="hint">Paste a direct image link</span>
+          </div>
+        </div>
       </div>
       <div id="admin-save-msg" class="admin-save-msg"></div>
       <button class="btn-admin-primary" id="admin-save-btn" onclick="saveProduct()">
@@ -219,7 +234,10 @@ function saveProduct() {
   const price = document.getElementById("af-price").value.trim();
   const cat   = document.getElementById("af-cat").value;
   const badge = document.getElementById("af-badge").value;
-  const image = document.getElementById("af-img").value.trim();
+  // Use uploaded image data if available, otherwise fall back to URL field
+  const urlField = document.getElementById("af-img");
+  const image = uploadedImageData || (urlField ? urlField.value.trim() : "");
+  uploadedImageData = null; // reset after save
 
   if (!name)  { alert("Product name is required."); return; }
   if (!price) { alert("Price is required."); return; }
