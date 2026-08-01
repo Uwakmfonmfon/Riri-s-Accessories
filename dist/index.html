@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Riri's Accessories</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/main-D7JISqLB.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/supabase-CjecJN_7.js">
+  <link rel="stylesheet" crossorigin href="/assets/main-u_LjldI4.css">
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Riri's <span>Accessories</span></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#shop" data-action="filter" data-cat="all">All</a></li>
+    <li><a href="#shop" data-action="filter" data-cat="jewelry">Jewelry</a></li>
+    <li><a href="#shop" data-action="filter" data-cat="bags">Bags</a></li>
+    <li><a href="#shop" data-action="filter" data-cat="watches">Watches</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="nav-bag" data-action="open-cart">
+      Bag
+      <span class="bag-count" id="bagCount">0</span>
+    </button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <p class="hero-tag">New Arrivals This Season</p>
+    <h1>Accessories for the Woman Who Notices <em>Detail</em></h1>
+    <p>Jewelry, bags, watches, and finishing touches — handpicked to bring a little elegance to your everyday.</p>
+    <div class="hero-btns">
+      <a href="#shop" class="btn-primary">Shop the Collection</a>
+      <a href="https://wa.me/2348000000000" target="_blank" class="btn-outline">Chat on WhatsApp</a>
+    </div>
+  </div>
+  <div class="hero-ornament">✦</div>
+</section>
+
+<section class="categories">
+  <div class="section-header">
+    <h2>Shop by Category</h2>
+    <p>Curated pieces, restocked often</p>
+  </div>
+  <div class="cat-grid">
+    <div class="cat-card active" data-action="filter" data-cat="all">
+      <div class="cat-icon">💎</div>
+      <h3>All Items</h3>
+      <p>Browse everything</p>
+    </div>
+    <div class="cat-card" data-action="filter" data-cat="jewelry">
+      <div class="cat-icon">💍</div>
+      <h3>Jewelry</h3>
+      <p>Rings, earrings, necklaces</p>
+    </div>
+    <div class="cat-card" data-action="filter" data-cat="bags">
+      <div class="cat-icon">👜</div>
+      <h3>Bags</h3>
+      <p>Totes, clutches, mini bags</p>
+    </div>
+    <div class="cat-card" data-action="filter" data-cat="watches">
+      <div class="cat-icon">⌚</div>
+      <h3>Watches</h3>
+      <p>Classic & modern styles</p>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="shop">
+  <div class="products-header">
+    <h2>The Collection</h2>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-action="filter" data-cat="all">All</button>
+      <button class="filter-btn" data-action="filter" data-cat="jewelry">Jewelry</button>
+      <button class="filter-btn" data-action="filter" data-cat="bags">Bags</button>
+      <button class="filter-btn" data-action="filter" data-cat="watches">Watches</button>
+      <button class="filter-btn" data-action="filter" data-cat="other">Other</button>
+    </div>
+  </div>
+  <div class="products-grid" id="productsGrid">
+    <div class="loading">
+      <div class="loading-spinner"></div>
+      <p>Loading products...</p>
+    </div>
+  </div>
+</section>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" data-action="close-cart"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-header">
+    <h3>Your Bag</h3>
+    <button class="close-cart" data-action="close-cart">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-total-row">
+      <span class="cart-total-label">Total</span>
+      <span class="cart-total-value" id="cartTotal">₦0</span>
+    </div>
+    <div class="checkout-btns">
+      <button class="checkout-btn btn-whatsapp" data-action="open-checkout" data-method="whatsapp">💬 Order via WhatsApp</button>
+      <button class="checkout-btn btn-bank" data-action="open-checkout" data-method="bank">🏦 Bank Transfer</button>
+      <button class="checkout-btn btn-opay" data-action="open-checkout" data-method="opay">🟠 Pay with Opay</button>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal">
+    <button class="modal-close" data-action="close-modal">✕</button>
+    <h3 id="modalTitle"></h3>
+    <p class="modal-sub" id="modalSub"></p>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <h3>Riri's Accessories</h3>
+      <p>Jewelry, bags, watches, and accessories chosen with care — delivered with the same care, right to your door.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Shop</h4>
+      <ul>
+        <li data-action="filter" data-cat="jewelry">Jewelry</li>
+        <li data-action="filter" data-cat="bags">Bags</li>
+        <li data-action="filter" data-cat="watches">Watches</li>
+        <li data-action="filter" data-cat="other">Other</li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Order With Us</h4>
+      <ul>
+        <li>💬 WhatsApp Orders</li>
+        <li>🏦 Bank Transfer</li>
+        <li>🟠 Opay</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 Riri's Accessories. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
