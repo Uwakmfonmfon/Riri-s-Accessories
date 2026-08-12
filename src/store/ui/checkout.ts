@@ -126,9 +126,29 @@ function submitOrder(): void {
   const url = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(msg)}`;
   window.open(url, '_blank');
 
+  // Persist the order so /order-success.html can render the summary and
+  // payment details after the redirect. The cart snapshot goes to
+  // sessionStorage; clearCart() empties the live cart so the bag badge and
+  // drawer don't still show the placed items when the customer returns.
+  const order = {
+    name,
+    phone,
+    address,
+    method: activeMethod,
+    items: cart.map((i) => ({ name: i.name, qty: i.qty, price: i.price })),
+    total,
+    ts: Date.now(),
+  };
+  try {
+    sessionStorage.setItem('riri:lastOrder', JSON.stringify(order));
+  } catch {
+    // sessionStorage unavailable (private mode quota, etc.) — fall through;
+    // the success page will show its empty state and the WhatsApp message
+    // already opened, so the order is not lost.
+  }
   clearCart();
   closeModal();
-  showToast("Order sent! We'll confirm shortly ✦");
+  window.location.assign('/order-success.html');
 }
 
 // Re-bind the submit listener once. We hook it on `document` so the

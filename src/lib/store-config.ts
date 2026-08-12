@@ -1,12 +1,11 @@
-// Storefront constants. The values for WhatsApp number, account number, and
-// Opay number are placeholders — replace with the real values when the store
-// is live.
+// Storefront constants — WhatsApp number, bank account, and Opay number
+// point to the live Riri's Accessories payment destinations.
 export const STORE = {
-  whatsapp: '2348000000000', // TODO: replace with real WhatsApp number
+  whatsapp: '2347032973656',
   bankName: 'First Bank Nigeria',
-  accountName: "Riri's Accessories",
-  accountNumber: '3XXXXXXXXX', // TODO: replace
-  opayNumber: '080XXXXXXXXX', // TODO: replace
+  accountName: 'Rachael E. Okon',
+  accountNumber: '7032973656',
+  opayNumber: '2347032973656',
 } as const;
 
 export const CAT_LABELS: Record<string, string> = {

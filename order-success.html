@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed — Riri's Accessories</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">Riri's <span>Accessories</span></a>
+</nav>
+
+<section class="success">
+  <div class="success-content" id="successContent">
+    <div class="success-ornament">✦</div>
+    <p class="success-tag">Order Confirmed</p>
+    <h1 id="successTitle">Thank you!</h1>
+    <p class="success-sub" id="successSub"></p>
+
+    <div class="success-block" id="orderSummary"></div>
+    <div class="success-block" id="paymentInfo"></div>
+
+    <div class="success-actions">
+      <a href="/" class="btn-primary">Continue Shopping</a>
+      <a href="#" class="btn-outline" id="whatsappFallback" target="_blank" rel="noopener">Open WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script type="module" src="/src/store/ui/order-success.ts"></script>
+</body>
+</html>
